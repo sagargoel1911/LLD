@@ -40,7 +40,7 @@ public:
 class PersonFactory
 {
 public:
-	Person *createPerson(string type)
+	static Person *createPerson(string type)
 	{
 		if (type == "Admin")
 		{
@@ -60,8 +60,7 @@ public:
 
 int main()
 {
-	PersonFactory *personFactory = new PersonFactory();
-	Person *person = personFactory->createPerson("Admin");
+	Person *person = PersonFactory::createPerson("Admin");
 	person->tell();
 
 	return 0;

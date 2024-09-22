@@ -27,7 +27,7 @@ public:
 	}
 };
 
-class PathCalculatorStratergyRegistry
+class PathCalculatorStratergyRegistry // we are using registry instead of factory as we do not want different instances every time as no need. Waste of space
 {
 	map<string, PathCalculatorStratergy *> mp;
 
@@ -68,5 +68,7 @@ int main()
 
 	client->findPath("Car");
 	client->findPath("Bike");
+
+	// Very easy problem statement: There are multiple was of solving a problem/ doing something. How to implement it? Here's the answer.
 	return 0;
 }

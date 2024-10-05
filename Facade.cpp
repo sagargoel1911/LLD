@@ -64,7 +64,7 @@ void Client(Facade *facade)
 
 int main()
 {
-	Facade *facade;
+	Facade *facade = new Facade();
 	Client(facade);
 
 	// Client can access subsystems directly or can use Facade for simplicity

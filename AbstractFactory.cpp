@@ -52,15 +52,15 @@ public:
 	}
 };
 
-class FactoryInterface
+class OSFactory
 {
 public:
-	virtual ~FactoryInterface() {}
+	virtual ~OSFactory() {}
 	virtual Button *createButton() = 0;
 	virtual TextBox *createTextBox() = 0;
 };
 
-class MacFactory : public FactoryInterface
+class MacFactory : public OSFactory
 {
 public:
 	Button *createButton()
@@ -73,7 +73,7 @@ public:
 	}
 };
 
-class WindowsFactory : public FactoryInterface
+class WindowsFactory : public OSFactory
 {
 public:
 	Button *createButton()
@@ -86,25 +86,19 @@ public:
 	}
 };
 
-class GUIFactory
+class OS
 {
 public:
-	static FactoryInterface *createFactory(string type)
+	OSFactory *osFactory;
+	OS(OSFactory *osFactory)
 	{
-		if (type == "Windows")
-		{
-			return new WindowsFactory();
-		}
-		else
-		{
-			return new MacFactory();
-		}
+		this->osFactory = osFactory;
 	}
 };
 
 int main()
 {
-	FactoryInterface *factory = GUIFactory::createFactory("Windows");
-	Button *button = factory->createButton();
+	OS *os = new OS(new WindowsFactory());
+	Button *button = os->osFactory->createButton();
 	button->say();
 }
